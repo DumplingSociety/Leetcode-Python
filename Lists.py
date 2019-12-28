@@ -144,8 +144,7 @@ print(delimiter.join(t))
 fhand = open('mbox-short.txt')
 for line in fhand:
     line = line.rstrip()
-    print(line)
- #   if not line.startswith('Form '): continue
+    if not line.startswith('Form '): continue
     words = line.split()
     email = words[1]
     piece =email.split('@') # double split 
@@ -230,3 +229,52 @@ def middle(nt):
 letters = ['a', 'b', 'c', 'd', 'e']
 middled = middle(letters)
 print(middled)
+
+# Debugging
+# most list methods modify the argument and return None. This is the opposite of the string methods, which return a new string and leave the orignal alone
+t = t.sort() # WRONG!
+# sort returns None
+
+# make copies to avoid aliasing
+# orig = t[:]
+# t.sort()
+# want to use a method like sort, but also keep the original list 
+
+# can also use sorted, which returns a new, sorted list band leaves the original alone. but avoid using sorted as a variable name
+letters = ['a', 'b', 'c', 'd', 'e']
+# print(letters.sorted())
+
+# Debugging
+
+fhand = open('mbox-short.txt')
+for line in fhand:
+    words = line.split()
+#    print('Debug: ', words)
+    if len(words) == 0: continue  # put this if in the frist, if we have zero words, 
+# we use continue to skip to the next line
+    if words[0] !='From': continue  # the error occurs when it encounters a blank line! >>> Debug:  []
+    print(words[2])
+    
+# Exercise 3: rewite the guardian code in the above example without two if statements. Instead, use a compound
+# logical expression using the and logical opeator with a single if statement
+fhand = open('mbox-short.txt')
+for line in fhand:
+    words = line.split()
+    if len(words) == 0 or words[0] !='From': continue
+    print(words[2])
+
+# Exercise 4: write a program to open the file romeo.txt and read it line by line. For each line, split the line
+# into a list of words using the split function. For each word, check to see if the word is already in a list. If the 
+# word is not in the list, add it to the list. When the program completes, sort and print the resulting words in 
+# alphabetical order
+
+inp_list = ['Arise', 'But', 'It', 'Juliet', 'Who', 'already', 'and', 'breaks', 'east',
+'envious', 'fair', 'grief', 'is', 'kill', 'light', 'moon', 'pale', 'sick',
+'soft', 'sun', 'the', 'through', 'what', 'window', 'with', 'yonder']
+fhand = open('romeo.txt')
+for line in fhand:
+    word = line.split()
+    if word in inp_list: continue
+    inp_list.append(word)
+print(sorted(inp_list))    
+     
