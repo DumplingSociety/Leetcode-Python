@@ -1,5 +1,5 @@
 # Dictionary is like a list. In a list, the index positions have to be integers
-# in a dic the indices can be any type
+# in a dict the indices can be any type
 eng2sp = dict()
 print(eng2sp) # {} repersent an empty dictionary
 eng2sp['one'] = 'uno' # this creats an item from the key 'one' to the value "uno"
